@@ -1,0 +1,39 @@
+---
+layout: default
+nav: blog
+title: Blog
+permalink: /blog/
+description: Notes on platform engineering, Terraform, Kubernetes, and the systems I build.
+---
+<div class="pagehead">
+  <div class="wrap">
+    <p class="eyebrow">Writing</p>
+    <h1>Blog</h1>
+    <p class="lede">
+      Notes on platform engineering, Terraform at scale, and whatever I am currently building.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    {% if site.posts.size > 0 %}
+    <ul class="postlist">
+      {% for post in site.posts %}
+      <li>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {% if post.excerpt %}<p>{{ post.excerpt | strip_html | strip_newlines | truncate: 220 }}</p>{% endif %}
+        {% if post.tags and post.tags.size > 0 %}
+        <div class="taglist">
+          {% for tag in post.tags %}<span>{{ tag }}</span>{% endfor %}
+        </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No posts yet.</p>
+    {% endif %}
+  </div>
+</section>

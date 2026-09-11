@@ -1,0 +1,213 @@
+---
+layout: default
+nav: projects
+title: Projects
+permalink: /projects/
+description: Platform engineering, developer tooling, and automated trading systems.
+---
+<div class="pagehead">
+  <div class="wrap">
+    <p class="eyebrow">Selected work</p>
+    <h1>Projects</h1>
+    <p class="lede">
+      Platform and developer tooling built at scale, plus independent and client work in
+      automated trading and market data.
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Platform work</h2>
+    <p class="note">Built and operated at C.H. Robinson. The source is internal, so these are
+    described rather than linked.</p>
+    <div class="grid">
+
+      <div class="card">
+        <p class="tag">MCP · self-service infra</p>
+        <h3>mcp-terraform</h3>
+        <p>An MCP server that lets developers self-service their own infrastructure — Azure and
+        other cloud providers — from inside an AI assistant. Provisioning requests become tool
+        calls that emit reviewed Terraform rather than hand-written config, so self-service does
+        not mean bypassing the guardrails.</p>
+        <div class="stack"><span>MCP</span><span>Terraform</span><span>Azure</span><span>multi-cloud</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Infrastructure as code</p>
+        <h3>Terraform module library</h3>
+        <p>50+ reusable, versioned, documented modules that became the standard way to build Azure
+        infrastructure company-wide — AKS, VNet and peering, Private DNS Zones, Application Gateway,
+        API Management, Key Vault, Cosmos DB, Databricks, Event Hub, Service Bus, PostgreSQL, Redis,
+        Storage. Consumed by 80+ teams.</p>
+        <div class="stack"><span>Terraform</span><span>Azure</span><span>semver</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">GitOps</p>
+        <h3>Atlantis PR-driven provisioning</h3>
+        <p>50+ Terraform live repositories across 20+ subscriptions and four regions. A pull request
+        triggers <code>plan</code>, reviewers read the plan in the PR, and <code>apply</code> runs on
+        approval — every infrastructure change in the estate carries an audit trail. I set the
+        standards behind it: module structure, remote state in Blob Storage, workspace layout, drift
+        handling, provider upgrades.</p>
+        <div class="stack"><span>Atlantis</span><span>Terraform</span><span>GitHub</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Go · REST</p>
+        <h3>Self-service provisioning API</h3>
+        <p>A REST platform in Go letting teams provision Azure resources and Kubernetes namespaces
+        themselves. Cut provisioning from days to minutes and removed most manual platform tickets.</p>
+        <div class="stack"><span>Go</span><span>Azure SDK</span><span>Kubernetes</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Go · CLI</p>
+        <h3>Terraform state migration tool</h3>
+        <p>A CLI built on <code>terraform-exec</code> that moves Terraform state safely between Azure
+        Blob backends during repository and subscription reorganizations — the kind of operation that
+        is unrecoverable when done by hand.</p>
+        <div class="stack"><span>Go</span><span>terraform-exec</span><span>Azure Blob</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Kubernetes</p>
+        <h3>Cross-cluster namespace informer</h3>
+        <p>A Go Kubernetes informer that syncs namespace state across clusters into the self-service
+        platform in real time, so the platform's view of the fleet never drifts from reality.</p>
+        <div class="stack"><span>Go</span><span>client-go</span><span>AKS</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Developer experience</p>
+        <h3>Backstage plugins &amp; templates</h3>
+        <p>Plugins for compliance, pipeline insights, Kafka catalog, and Kubernetes deployments, plus
+        scaffolder templates for Python FastAPI, .NET, React, and Kafka consumer services.</p>
+        <div class="stack"><span>Backstage</span><span>TypeScript</span><span>React</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Kubernetes fleet</p>
+        <h3>20+ AKS clusters</h3>
+        <p>Provisioned and operated entirely through Terraform modules across centralus, eastus2,
+        northeurope, and australiaeast. Add-ons managed with Helm: KEDA, cert-manager, external-dns,
+        NGINX Ingress, Vault Agent.</p>
+        <div class="stack"><span>AKS</span><span>Helm</span><span>Terraform</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Secrets</p>
+        <h3>Enterprise HashiCorp Vault</h3>
+        <p>Administered for 80+ teams: auth methods across Kubernetes, Azure managed identity, Okta,
+        JWT and AppRole; dynamic database secrets with automatic rotation; PKI issuing TLS for the
+        platform.</p>
+        <div class="stack"><span>Vault</span><span>PKI</span><span>Okta</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Governance</p>
+        <h3>Azure Policy at scale</h3>
+        <p>Policy across management groups and 20+ subscriptions covering tagging, security baselines,
+        SKU limits, LLM model allowlists, and compliance audit — plus custom RBAC roles.</p>
+        <div class="stack"><span>Azure Policy</span><span>RBAC</span><span>management groups</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">AI infrastructure</p>
+        <h3>MCP servers for platform ops</h3>
+        <p>Model Context Protocol servers exposing cluster and platform operations to AI assistants,
+        with the guardrails that make that safe — alongside infrastructure for GenAI and MLOps
+        workloads.</p>
+        <div class="stack"><span>MCP</span><span>Go</span><span>Kubernetes</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Independent &amp; client projects</h2>
+    <p class="note">Automated trading and market-data systems. Live money moves through several of
+    these, so the repositories are private and strategy parameters are not published — what follows
+    is the engineering.</p>
+    <div class="grid">
+
+      <div class="card">
+        <p class="tag">Python · live trading</p>
+        <h3>Futures auto-traders</h3>
+        <p>Production bots trading CME futures through the TopStepX / ProjectX Gateway API. REST plus
+        SignalR WebSockets for live tick and order streams, session-anchored bar construction,
+        bracketed entries with hard stops and targets, snapshot-based P&amp;L attribution, daily risk
+        limits, orphan-order sweeping, and restart-safe state. Deployed to a VPS with journal sync.</p>
+        <div class="stack"><span>Python</span><span>SignalR</span><span>REST</span><span>systemd</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Python · research</p>
+        <h3>Backtesting &amp; journal analytics</h3>
+        <p>A backtest engine sharing the bots' exact signal code, so simulated and live bars are
+        identical by construction rather than by hope. Runs over multi-year tick archives (~36 GB)
+        with journal-driven performance attribution across sessions and instruments.</p>
+        <div class="stack"><span>Python</span><span>pandas</span><span>tick data</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">C# · NinjaTrader 8</p>
+        <h3>Indicator &amp; strategy suite</h3>
+        <p>A dozen-plus NinjaScript indicators and automated strategies — ATR level engines,
+        volume-weighted trend, decision engines, order-flow tooling, and a voice coach that narrates
+        setups. Roughly 14k lines of C# against the NT8 lifecycle and order APIs.</p>
+        <div class="stack"><span>C#</span><span>NinjaScript</span><span>.NET</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Node · MCP · CDP</p>
+        <h3>TradingView MCP bridge</h3>
+        <p>An MCP server that drives the TradingView Desktop app over Chrome DevTools Protocol —
+        78 tools covering chart state, OHLCV, custom Pine drawing output, strategy results, replay,
+        and Pine compilation. Turns a stateful desktop financial UI into an API an AI agent can
+        reason over.</p>
+        <div class="stack"><span>Node.js</span><span>MCP</span><span>CDP</span><span>Electron</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Next.js · LLM</p>
+        <h3>PineScript AI</h3>
+        <p>Self-hosted Pine Script generator: BM25 retrieval over v6 docs and 285 example scripts,
+        multi-provider LLM support (Anthropic, OpenAI, Google, Ollama), SSE streaming, and a
+        three-layer validation pipeline — static rules, AST transpiler check, then AI review with
+        auto-correction. Bring-your-own-key; nothing is stored server-side.</p>
+        <div class="stack"><span>Next.js</span><span>TypeScript</span><span>RAG</span><span>CodeMirror 6</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Pine Script</p>
+        <h3>Charting &amp; signal library</h3>
+        <p>~8k lines of Pine v5/v6: session-level frameworks, opening-range and trend-break systems,
+        VWAP bias signals, and analytics dashboards — the research layer the C# and Python
+        implementations are ported from.</p>
+        <div class="stack"><span>Pine Script v6</span><span>TradingView</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Python · COM interop</p>
+        <h3>0DTE options paper-tracker</h3>
+        <p>Tracks index option positions against live signals, bridging to the thinkorswim desktop
+        via its RTD COM server for real-time marks and falling back to the CBOE chain when it is
+        offline — after a delayed feed was found to misprice open positions by roughly 29%.</p>
+        <div class="stack"><span>Python</span><span>RTD / COM</span><span>CBOE</span></div>
+      </div>
+
+      <div class="card">
+        <p class="tag">Go</p>
+        <h3>Market scanners</h3>
+        <p>Small, fast command-line tools — an EMA-based scanner across a symbol universe and an
+        S&amp;P 500 constituent exporter feeding the research pipeline.</p>
+        <div class="stack"><span>Go</span><span>CLI</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
